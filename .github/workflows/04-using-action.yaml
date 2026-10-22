@@ -15,6 +15,7 @@ jobs:
           working-directory: ./04-using-actions/react-app
         - name: Run Unit Tests
           run: npm run test
+          working-directory: ./04-using-actions/react-app
     # 0.Checkout code from repositiory
     # 1. Install dependencides of our react appplication
     # 2. Execute automated tests
