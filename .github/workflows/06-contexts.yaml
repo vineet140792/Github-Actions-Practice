@@ -1,4 +1,5 @@
 name: 06 - github context
+#customize workflow name
 run-name: 06 - contexts | DEBUG - ${{inputs.debug}}
 
 on: 
@@ -8,9 +9,17 @@ on:
         debug:
           type: boolean
           default: false
+
+env:
+    MY_WORKFLOW_VAR: 'workflow'
+    MY_OVERWRITTEN_VAR: 'workflow'
+
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+          MY_JOB_VAR: 'job'
+          MY_OVERWRITTENJOB_VAR: 'job'
         steps:
             - name: Display information
               run: |
@@ -24,3 +33,9 @@ jobs:
             - name: Retrieve Variable
               run: |
                 echo "Variable Value: ${{vars.MY_VAR}}"
+            - name: Print Env Variables
+              env: 
+                MY_OVERWRITTEN_VAR: 'step'
+              run: |
+                echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+                echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
